@@ -12,7 +12,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 print('Starting up bot...')
 
-TOKEN: Final = '6288363813:AAG8Ic4vP4izH0_sR0prfrAWyJTQrEkuD5g'
+TOKEN: Final = 'YourToken'
 BOT_USERNAME: Final = '@Stalk_Location_bot'
 
 
