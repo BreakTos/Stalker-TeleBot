@@ -1,5 +1,4 @@
 # You can Steal api keys sucker , IDC
-
 from typing import Final
 import wikipediaapi
 from datetime import datetime
@@ -13,7 +12,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 print('Starting up bot...')
 
-TOKEN: Final = 'Your Key'
+TOKEN: Final = '6288363813:AAG8Ic4vP4izH0_sR0prfrAWyJTQrEkuD5g'
 BOT_USERNAME: Final = '@Stalk_Location_bot'
 
 
@@ -31,7 +30,12 @@ async def custom_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         page=page.split('\n')
         finalpage=page[0]
         #print(page[0])
+
         ans=""
+        print(finalpage)
+        if (finalpage[-1]==":"):
+            await update.message.reply_text("Invalid Location")
+            return
         if len(page[0])>300:
             finalpage=page[0][0:300]
             #print(finalpage)
@@ -44,9 +48,16 @@ async def custom_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             else:
                 finalpage+='.'
         ans+=finalpage+"\n";
-    city_name=s
+    else:
+        await update.message.reply_text("Invalid Location")
+        return
+
+    page=str(page)
+    page=page.split()
+    city_name=page[0]
     geolocator = Nominatim(user_agent="city_time_app")
     location = geolocator.geocode(city_name)
+
 
     if location:
         tf = TimezoneFinder()
@@ -97,5 +108,3 @@ if __name__ == '__main__':
     print('Polling...')
     # Run the bot
     app.run_polling(poll_interval=5)
-
-
